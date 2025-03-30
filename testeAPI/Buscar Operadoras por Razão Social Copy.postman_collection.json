@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "d16a5ae0-1332-4cfb-91eb-73a5ea07f86c",
+		"name": "Buscar Operadoras por Razão Social Copy",
+		"description": "**Buscar Operadoras por Termo:**\n\n1. **Propósito:** Testa a busca por operadoras usando um termo de busca válido (\"Amil\").\n    \n2. **Método:** GET\n    \n3. **URL:** `http://127.0.0.1:5000/busca?termo=Amil`\n    \n4. **Resultado esperado:** A API deve retornar um JSON contendo uma lista de operadoras que correspondem ao termo \"Amil\", ordenadas por pontuação de similaridade.\n    \n\n**Acessar página seguinte:**\n\n1. **Propósito:** Testa a paginação da API, buscando a segunda página de resultados para o termo \"Amil\".\n    \n2. **Método:** GET\n    \n3. **URL:** `http://127.0.0.1:5000/busca?termo=Amil&page=2`\n    \n4. **Resultado esperado:** A API deve retornar um JSON contendo a segunda página de resultados para a busca por \"Amil\".\n    \n\n**Termo não encontrado:**\n\n1. **Propósito:** Testa o comportamento da API quando o termo de busca não encontra resultados na base de dados.\n    \n2. **Método:** GET\n    \n3. **URL:** `http://127.0.0.1:5000/busca?termo=TermoInexistente`\n    \n4. **Resultado esperado:** A API deve retornar um JSON contendo uma lista vazia de resultados ou uma mensagem indicando que nenhum resultado foi encontrado.\n    \n\n**Nenhum Termo enviado:**\n\n1. **Propósito:** Testa o tratamento de erros da API quando o parâmetro \"termo\" não é fornecido na requisição.\n    \n2. **Método:** GET\n    \n3. **URL:** `http://127.0.0.1:5000/busca`\n    \n4. **Resultado esperado:** A API deve retornar um código de status 400 (Bad Request) e um JSON contendo uma mensagem de erro indicando que o parâmetro \"termo\" é obrigatório.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42403769"
+	},
+	"item": [
+		{
+			"name": "termo=bradesco",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/busca?termo=bradesco",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"busca"
+					],
+					"query": [
+						{
+							"key": "termo",
+							"value": "bradesco"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:5000"
+		}
+	]
+}
